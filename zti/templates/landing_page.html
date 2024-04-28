@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="text-white header-image">
+        <div class="container py-5 text-center">
+            <h1 class="display-4 fw-bold font-weight-bold">Car meet Polska</h1>
+            <p class="font-italic mb-0 fs-3">Car meets - odkrywaj, rejestruj.</p>
+            <p class="font-italic">
+            </p>
+            <a href="{% url "browse-meets" %}" role="button" class="btn btn-secondary px-5">Znajdź meet w okolicy</a>
+            <a href="{% url "new-meet" %}" role="button" class="btn btn-secondary px-5">Rejestruj meet</a>
+        </div>
+    </div>
+    <div class="container text-center">
+        <h1 class="display-4">O nas</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus scelerisque maximus. In hac habitasse platea dictumst. Nulla nibh risus, dictum a convallis ut, varius id ligula. Aliquam semper quam eu libero efficitur mollis. Pellentesque sit amet ligula at velit faucibus posuere suscipit eget elit. In urna ipsum, fringilla in mattis quis, vulputate nec orci. Maecenas nisi nunc, aliquet non augue et, mattis maximus sapien. Cras tempus ipsum leo. Aenean at ligula sit amet orci lobortis iaculis at et enim.
+        </p>
+        <h1 class="display-6">Nasza misja</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus scelerisque maximus. In hac habitasse platea dictumst. Nulla nibh risus, dictum a convallis ut, varius id ligula. Aliquam semper quam eu libero efficitur mollis. Pellentesque sit amet ligula at velit faucibus posuere suscipit eget elit. In urna ipsum, fringilla in mattis quis, vulputate nec orci. Maecenas nisi nunc, aliquet non augue et, mattis maximus sapien. Cras tempus ipsum leo. Aenean at ligula sit amet orci lobortis iaculis at et enim.
+        </p>
+        <a href="{% url "browse-meets" %}" role="button" class="btn btn-outline-secondary px-5">
+            Znajdź swój ulubiony meet razem z nami
+        </a>
+    </div>
+{% endblock %}
