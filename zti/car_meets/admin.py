@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Car, CarMeet, MeetHost
+from .models import Car, CarMeet
 
 # Register your models here.
 admin.site.register(Car)
 admin.site.register(CarMeet)
-admin.site.register(MeetHost)

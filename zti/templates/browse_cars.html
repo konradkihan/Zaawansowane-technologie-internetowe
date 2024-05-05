@@ -1,25 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-
-
-
     <div class="container">
         <div class="row col-md-12">
-            {% for meet in meets %}
+            {% for car in cars %}
                 <div class="col-md-4">
                     <div class="mb-4 mt-4 card text-center">
                         <div class="card-header">
-                            <div>
-                                <iframe class="card-img-top" width='350' height='350' src='https://maps.google.com/maps?&amp;q="+encodeURIComponent{{ meet.address }}+"&amp;output=embed'></iframe>
-                            </div>
-                            {{ meet.address }} @ {{ meet.start_date }}
+                            <img src="/media/{{ car.image }}" width="120em" alt="Zdjęcie autka">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                {{ meet.name }} by {{ meet.meet_host }}
+                                {{ car.brand }} {{ car.model }} z {{ car.year }}    
                             </h5>
                             <p class="card-text">
-                                {{ meet.description }}
+                                {{ car.description }}
                             </p>
                         </div>
                     </div>

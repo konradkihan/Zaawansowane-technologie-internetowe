@@ -7,19 +7,10 @@ class CarMeet(models.Model):
     start_date = models.DateField()
     meet_host = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
+    description = models.TextField(max_length=1000)
 
     def __str__(self):
         return self.name
-
-
-class MeetHost(models.Model):
-    name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
-    phone = models.CharField(max_length=12)
-    email = models.CharField(max_length=50)
-
-    def __str__(self):
-        return f"{self.name} {self.surname}"
 
 
 class Car(models.Model):
@@ -27,6 +18,8 @@ class Car(models.Model):
     model = models.CharField(max_length=100)
     year = models.IntegerField()
     license_plate = models.CharField(max_length=10)
+    description = models.TextField(max_length=1000)
+    image = models.ImageField(upload_to='car_images/', null=True, blank=True)
 
     def __str__(self):
         return f"{self.brand} {self.model} from {self.year}"

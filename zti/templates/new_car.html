@@ -4,13 +4,14 @@
         <div class="col-sm">
         </div>
         <div class="col-sm">
-            <form action="{% url "new-meet" %}" method="post">
+            <form action="{% url "new-car" %}" enctype="multipart/form-data" method="post">
             {% csrf_token %}
                 {{ form }}
                 <button type="submit" class="mt-4 form-control btn btn-dark">Dodaj nowy</button>
             </form>  
         </div>
         <div class="col-sm">
+            <code>*</code> - pole niewymagane
         </div>
     </div>
 {% endblock %}
