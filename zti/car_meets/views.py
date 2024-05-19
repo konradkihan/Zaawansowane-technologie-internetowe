@@ -22,6 +22,13 @@ def register_meet(request):
             )
             new_car_meet.save()
             return redirect("browse-meets")
+        else:
+            return render(request,
+                          "new_meet.html",
+                          {
+                              "form": NewMeetForm,
+                              "errors": form.errors
+                          })
     return render(request,
                   "new_meet.html",
                   {
@@ -60,6 +67,10 @@ def add_new_car(request):
             )
             new_car.save()
             return redirect("browse-cars")
+        else:
+            return render(request,
+                          "new_car.html",
+                          {"form": CarMeetForm, "errors": form.errors})
 
     return render(request,
                   "new_car.html",

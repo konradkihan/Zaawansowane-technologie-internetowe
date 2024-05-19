@@ -2,6 +2,7 @@
 {% block content %}
     <div class="row">
         <div class="col-sm">
+            <code>*</code> - pole niewymagane
         </div>
         <div class="col-sm">
             <form action="{% url "new-car" %}" enctype="multipart/form-data" method="post">
@@ -11,7 +12,7 @@
             </form>  
         </div>
         <div class="col-sm">
-            <code>*</code> - pole niewymagane
+            {{ errors }}            
         </div>
     </div>
 {% endblock %}

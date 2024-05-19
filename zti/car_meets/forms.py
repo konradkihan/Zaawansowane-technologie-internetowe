@@ -1,6 +1,6 @@
+from datetime import datetime
+
 from django import forms
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
 
 
 class NewMeetForm(forms.Form):
@@ -29,6 +29,37 @@ class NewMeetForm(forms.Form):
                                                             "Będą food trucki ze zbyt drogimi frytkami\n"
                                                             "(wszyscy wiemy że nie da się im oprzeć)",
                                              "class": "mb-4 form-control"}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        name = cleaned_data.get("name")
+        start_date = cleaned_data.get("start_date")
+        meet_host = cleaned_data.get("meet_host")
+        address = cleaned_data.get("address")
+        description = cleaned_data.get("description")
+
+        if 3 > len(name) > 100:
+            self.add_error("name", "Nazwa powinna mieć od 3 do 100 znaków.")
+
+        try:
+            datetime.strptime(str(start_date), "%d-%m-%Y")
+        except ValueError:
+            self.add_error("start_date", "Podaj jakąś datę wydarzenia")
+
+        if start_date < datetime.today().date():
+            self.add_error("start_date", "Event nie może zacząć się wcześniej niż dzisiaj.")
+
+        if 3 > len(meet_host) > 100:
+            self.add_error("meet_host", "Nazwa hosta powinna mieć od 3 do 100 znaków.")
+
+        if 1 > len(address) > 100:
+            self.add_error("address", "Podaj właściwy adres")
+
+        if len(description) > 1000:
+            self.add_error("description", "Opis jest zbyt długi!")
+
+        return cleaned_data
 
 
 class CarMeetForm(forms.Form):
@@ -68,3 +99,36 @@ class CarMeetForm(forms.Form):
 
     image = forms.ImageField(label='Zdjęcie samochodu*', required=False,
                              widget=forms.FileInput(attrs={"class": "mb-4 form-control"}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        brand = cleaned_data.get("brand")
+        model = cleaned_data.get("model")
+        year = cleaned_data.get("year")
+        license_plate = cleaned_data.get("license_plate")
+        description = cleaned_data.get("description")
+
+        if len(brand) > 100 or len(brand) == 0:
+            self.add_error("brand", "Uzupełnij markę samochodu od 1 do 100 znaków.")
+
+        if len(model) > 100 or len(model) == 0:
+            self.add_error("model", "Uzupełnij model pojazdu od 1 do 100 znaków.")
+
+        if (
+                brand.lower() == "toyota" and model.lower() == "prius"
+        ) or (
+                brand.lower() == "nissan" and model.lower() == "altima"
+        ) or (
+                brand.lower() == "fiat" and model.lower() == "multipla"
+        ):
+            self.add_error("model", "Nie. Po prostu nie.")
+
+        if year > datetime.today().year or year < 1885:
+            self.add_error("year", "A ty co? Podróżnik w czasie?")
+
+        if len(license_plate) > 10:
+            self.add_error("license_plate", "Niepoprawny numer rejestracyjny pojazdu.")
+
+        if len(description) > 1000:
+            self.add_error("description", "Opis jest zbyt długi!")
